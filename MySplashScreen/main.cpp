@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     /* 延时处理 */
     QDateTime relayTime = QDateTime::currentDateTime();
     QDateTime currentTime;
+
     do
     {
         currentTime = QDateTime::currentDateTime();
@@ -52,5 +53,21 @@ int main(int argc, char *argv[])
 
     /* 关闭启动页 */
     mySplashScreen.finish(&w);
-    return a.exec();
+    int iRet = a.exec();
+
+    /* 退出页 */
+    mySplashScreen.show();
+    relayTime = QDateTime::currentDateTime();
+    progressBar.setValue(0);
+    do
+    {
+        currentTime = QDateTime::currentDateTime();
+        progressBar.setValue(relayTime.secsTo(currentTime) / 5.0 * 100);
+
+        /* 刷新UI */
+        QCoreApplication::processEvents();
+    }
+    while(relayTime.secsTo(currentTime) <= 5);
+
+    return iRet;
 }
