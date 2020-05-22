@@ -37,15 +37,13 @@ int main(int argc, char *argv[])
     /* 延时处理 */
     QDateTime relayTime = QDateTime::currentDateTime();
     QDateTime currentTime;
-    int i = 0;
     do
     {
         currentTime = QDateTime::currentDateTime();
-        progressBar.setValue(i * 20);
+        progressBar.setValue(relayTime.secsTo(currentTime) / 5.0 * 100);
 
         /* 刷新UI */
         QCoreApplication::processEvents();
-        i++;
     }
     while(relayTime.secsTo(currentTime) <= 5);
 
