@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/new/luanch">
+        <file>src/luanch.JPG</file>
+        <file>src/picture.JPG</file>
+    </qresource>
+</RCC>
