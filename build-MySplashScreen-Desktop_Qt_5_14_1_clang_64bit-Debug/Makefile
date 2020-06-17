@@ -53,11 +53,19 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../MySplashScreen/main.cpp \
+		../MySplashScreen/myprogresspie.cpp \
+		../MySplashScreen/myprogressring.cpp \
 		../MySplashScreen/widget.cpp qrc_MyResource.cpp \
+		moc_myprogresspie.cpp \
+		moc_myprogressring.cpp \
 		moc_widget.cpp
 OBJECTS       = main.o \
+		myprogresspie.o \
+		myprogressring.o \
 		widget.o \
 		qrc_MyResource.o \
+		moc_myprogresspie.o \
+		moc_myprogressring.o \
 		moc_widget.o
 DIST          = ../../../../Qt5.14.1/5.14.1/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.14.1/5.14.1/clang_64/mkspecs/qdevice.pri \
@@ -236,7 +244,11 @@ DIST          = ../../../../Qt5.14.1/5.14.1/clang_64/mkspecs/features/spec_pre.p
 		../../../../Qt5.14.1/5.14.1/clang_64/mkspecs/features/exceptions.prf \
 		../../../../Qt5.14.1/5.14.1/clang_64/mkspecs/features/yacc.prf \
 		../../../../Qt5.14.1/5.14.1/clang_64/mkspecs/features/lex.prf \
-		../MySplashScreen/MySplashScreen.pro ../MySplashScreen/widget.h ../MySplashScreen/main.cpp \
+		../MySplashScreen/MySplashScreen.pro ../MySplashScreen/myprogresspie.h \
+		../MySplashScreen/myprogressring.h \
+		../MySplashScreen/widget.h ../MySplashScreen/main.cpp \
+		../MySplashScreen/myprogresspie.cpp \
+		../MySplashScreen/myprogressring.cpp \
 		../MySplashScreen/widget.cpp
 QMAKE_TARGET  = MySplashScreen
 DESTDIR       = 
@@ -656,8 +668,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../MySplashScreen/MyResource.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt5.14.1/5.14.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../MySplashScreen/widget.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../MySplashScreen/main.cpp ../MySplashScreen/widget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../MySplashScreen/myprogresspie.h ../MySplashScreen/myprogressring.h ../MySplashScreen/widget.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../MySplashScreen/main.cpp ../MySplashScreen/myprogresspie.cpp ../MySplashScreen/myprogressring.cpp ../MySplashScreen/widget.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../MySplashScreen/widget.ui $(DISTDIR)/
 	$(COPY_FILE) --parents MySplashScreen_en_AS.ts $(DISTDIR)/
 
@@ -701,9 +713,23 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../../Qt5.14.1/5.14.1/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.13 -Wall -Wextra -dM -E -o moc_predefs.h ../../../../Qt5.14.1/5.14.1/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_widget.cpp
+compiler_moc_header_make_all: moc_myprogresspie.cpp moc_myprogressring.cpp moc_widget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_widget.cpp
+	-$(DEL_FILE) moc_myprogresspie.cpp moc_myprogressring.cpp moc_widget.cpp
+moc_myprogresspie.cpp: ../MySplashScreen/myprogresspie.h \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		moc_predefs.h \
+		../../../../Qt5.14.1/5.14.1/clang_64/bin/moc
+	/Users/aomi/Qt5.14.1/5.14.1/clang_64/bin/moc $(DEFINES) --include /Users/aomi/Desktop/Qt/Qt-Custom-control/build-MySplashScreen-Desktop_Qt_5_14_1_clang_64bit-Debug/moc_predefs.h -I/Users/aomi/Qt5.14.1/5.14.1/clang_64/mkspecs/macx-clang -I/Users/aomi/Desktop/Qt/Qt-Custom-control/MySplashScreen -I/Users/aomi/Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/aomi/Qt5.14.1/5.14.1/clang_64/lib/QtGui.framework/Headers -I/Users/aomi/Qt5.14.1/5.14.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/aomi/Qt5.14.1/5.14.1/clang_64/lib ../MySplashScreen/myprogresspie.h -o moc_myprogresspie.cpp
+
+moc_myprogressring.cpp: ../MySplashScreen/myprogressring.h \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		moc_predefs.h \
+		../../../../Qt5.14.1/5.14.1/clang_64/bin/moc
+	/Users/aomi/Qt5.14.1/5.14.1/clang_64/bin/moc $(DEFINES) --include /Users/aomi/Desktop/Qt/Qt-Custom-control/build-MySplashScreen-Desktop_Qt_5_14_1_clang_64bit-Debug/moc_predefs.h -I/Users/aomi/Qt5.14.1/5.14.1/clang_64/mkspecs/macx-clang -I/Users/aomi/Desktop/Qt/Qt-Custom-control/MySplashScreen -I/Users/aomi/Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/aomi/Qt5.14.1/5.14.1/clang_64/lib/QtGui.framework/Headers -I/Users/aomi/Qt5.14.1/5.14.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/aomi/Qt5.14.1/5.14.1/clang_64/lib ../MySplashScreen/myprogressring.h -o moc_myprogressring.cpp
+
 moc_widget.cpp: ../MySplashScreen/widget.h \
 		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -740,8 +766,27 @@ main.o: ../MySplashScreen/main.cpp ../MySplashScreen/widget.h \
 		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/QSplashScreen \
-		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/qsplashscreen.h
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/qsplashscreen.h \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../MySplashScreen/myprogresspie.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../MySplashScreen/main.cpp
+
+myprogresspie.o: ../MySplashScreen/myprogresspie.cpp ../MySplashScreen/myprogresspie.h \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtGui.framework/Headers/QPainter \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtGui.framework/Headers/qpainter.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o myprogresspie.o ../MySplashScreen/myprogresspie.cpp
+
+myprogressring.o: ../MySplashScreen/myprogressring.cpp ../MySplashScreen/myprogresspie.h \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtGui.framework/Headers/QPainter \
+		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtGui.framework/Headers/qpainter.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o myprogressring.o ../MySplashScreen/myprogressring.cpp
 
 widget.o: ../MySplashScreen/widget.cpp ../MySplashScreen/widget.h \
 		../../../../Qt5.14.1/5.14.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
@@ -751,6 +796,12 @@ widget.o: ../MySplashScreen/widget.cpp ../MySplashScreen/widget.h \
 
 qrc_MyResource.o: qrc_MyResource.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_MyResource.o qrc_MyResource.cpp
+
+moc_myprogresspie.o: moc_myprogresspie.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_myprogresspie.o moc_myprogresspie.cpp
+
+moc_myprogressring.o: moc_myprogressring.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_myprogressring.o moc_myprogressring.cpp
 
 moc_widget.o: moc_widget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_widget.o moc_widget.cpp

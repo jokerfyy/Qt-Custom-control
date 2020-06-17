@@ -17,9 +17,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
+    myprogresspie.cpp \
+    myprogressring.cpp \
     widget.cpp
 
 HEADERS += \
+    myprogresspie.h \
+    myprogressring.h \
     widget.h
 
 FORMS += \
